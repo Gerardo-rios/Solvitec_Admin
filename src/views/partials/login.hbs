@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <form class="border border-primary p-4 rounded shadow-lg" style="width: 400px;" action="/iniciar_sesion" method="POST">
+    <h2 class="text-center mb-4">Iniciar sesión</h2>
+    <div class="mb-3">
+      <label for="loginEmail" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" id="loginEmail" name="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo">
+    </div>
+    <div class="mb-3">
+      <label for="loginPassword" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Ingresa tu contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg d-block mx-auto">Iniciar sesión</button>
+    <div class="mt-4 text-center">
+      ¿Aún no tienes cuenta? <a href="/registarse">Registrate</a>
+    </div>
+  </form>
+</div>

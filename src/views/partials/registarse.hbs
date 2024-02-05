@@ -1,0 +1,18 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <form class="border border-primary p-4 rounded shadow-lg" style="width: 400px;" action="/crear_usuario" method="POST">
+    <h2 class="text-center mb-4">Registrarse</h2>
+    <!-- Campos de registro -->
+    <div class="mb-3">
+      <label for="registerEmail" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Ingresa tu correo">
+    </div>
+    <div class="mb-3">
+      <label for="registerPassword" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Crea tu contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg d-block mx-auto">Registrarse</button>
+    <div class="mt-4 text-center">
+      ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
+    </div>
+  </form>
+</div>

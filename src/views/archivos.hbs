@@ -1,0 +1,59 @@
+<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
+<div class="p-3 mb-2 bg-warning bg-gradient ">
+  <ul class="nav justify-content-center text-dark">
+    <li class="nav-item ">
+      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/archivos">Archivos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/cita">Citas</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Perfil
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/perfil">Perfil</a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Cerrar sesión</a>
+      </div>
+    </li>
+  </ul>
+</div>
+  
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class=" col-md-6 mt-4 mb-4">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="user mx-4">
+  <div class="row">
+    {{#each contactos}}
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <!-- Mostrar el nombre del contacto -->
+            <h5 class="card-title">{{this.datos.nombre}}</h5>
+            <!-- Agregar otros detalles del contacto -->
+            <h6 class="card-subtitle mb-2 text-muted">Teléfono: {{this.datos.telefono}}</h6>
+            <p class="card-text">Correo: {{this.datos.correo}}</p>
+            <!-- Agregar enlace para borrar el contacto -->
+            <a href="/borrar/{{this.id}}" class="card-link">Borrar</a>
+            <a href="/presentar_mascota/{{this.id}}" class="card-link">Ver detalles</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+

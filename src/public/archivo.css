@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&display=swap');
+* {
+    margin: 0px;
+}
+
+.cont_p {
+    text-align: left;
+    background-color: #f8f8f8;
+    display: inline-block;
+    display: flex;
+    width: 100%;
+    /* Ocupa el 100% del ancho disponible */
+    height: 100vh;
+    /* Ocupa el 100% de la altura de la ventana */
+}
+
+h1 {
+    background-color: #8fded2;
+    font-size: 50px;
+    text-align: center;
+    padding: 20px 20px;
+    color: rgb(0, 0, 0);
+    font-family: 'Kalnia', serif;
+}
+
+.con_13 {
+    background-color: rgb(248, 248, 248);
+    display: flex;
+    width: 100%;
+}
+
+.separar {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    background-color: rgb(255, 255, 255);
+    margin-top: 15px;
+    align-items: center;
+}
+
+.user {
+    border: 1px solid #000000;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 20px;
+    overflow: auto;
+    /* Agrega una barra de desplazamiento */
+    max-height: 400px;
+    /* Establece una altura máxima */
+}
+
+.user-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 20px;
+}
+
+.user-container {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+.user-container h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.user-container p {
+    margin: 5px 0;
+    color: #666;
+}
+
+a {
+    text-decoration: none;
+}
