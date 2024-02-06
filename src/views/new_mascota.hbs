@@ -1,69 +1,103 @@
 <h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-info text-dark"><ul class="nav justify-content-center ">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/archivos">Archivos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/cita">Citas</a>
-  </li>
-
-</ul></div>
+<div class="p-3 mb-2 bg-warning bg-gradient">
+  <ul class="nav justify-content-center text-dark">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/archivos">Archivos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/cita">Citas</a>
+    </li>
+  </ul>
+</div>
 <h1 class="text-center mt-4 mb-4">Ingresa los datos de la mascota</h1>
 <div class="container" style="font-family: 'Arial', sans-serif;">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <form class="form-floating mb-3" action="/new-mascota" method="POST">
-                <input type="hidden" name="userId" value="{{userId}}">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="nombreMascota" name="mascota"
-                        placeholder="Nombre de la mascota" autofocus>
-                    <label for="nombreMascota">Nombre de la mascota</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="edadMascota" name="edad_mascota"
-                        placeholder="Edad de la mascota">
-                    <label for="edadMascota">Edad de la mascota</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select class="form-select" id="especie" name="especie" aria-label="Floating select example">
-                        <option selected>Selecciona una opción</option>
-                        <option value="Perro">Perro</option>
-                        <option value="Gato">Gato</option>
-                        <option value="Pajaro">Pajaro</option>
-                        <option value="Camello">Camello</option>
-                    </select>
-                    <label for="especie">Especie</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="fechaIngreso" name="fecha"
-                        placeholder="Fecha de ingreso">
-                    <label for="fechaIngreso">Fecha de ingreso</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="pesoMascota" name="peso"
-                        placeholder="Peso de la mascota">
-                    <label for="pesoMascota">Peso de la mascota</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="alturaMascota" name="altura"
-                        placeholder="Altura de la mascota">
-                    <label for="alturaMascota">Altura de la mascota</label>
-                </div>
-                <div class="text-center mb-5 d-flex justify-content-center">
-                    <div class="me-2">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-primary"
-                            onclick="window.location.href = '/presentar_mascota';">Volver</button>
-                    </div>
-                </div>
-
-
-            </form>
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <form class="form-floating mb-3" action="/new-mascota" method="POST">
+        <input type="hidden" name="userId" value="{{userId}}" />
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="nombreMascota"
+            name="mascota"
+            placeholder="Nombre de la mascota"
+            autofocus
+          />
+          <label for="nombreMascota">Nombre de la mascota</label>
         </div>
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="edadMascota"
+            name="edad_mascota"
+            placeholder="Edad de la mascota"
+          />
+          <label for="edadMascota">Edad de la mascota</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="especie"
+            name="especie"
+            aria-label="Floating select example"
+          >
+            <option selected>Selecciona una opción</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Pajaro">Pajaro</option>
+            <option value="Camello">Camello</option>
+          </select>
+          <label for="especie">Especie</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="date"
+            class="form-control"
+            id="fechaIngreso"
+            name="fecha"
+            placeholder="Fecha de ingreso"
+          />
+          <label for="fechaIngreso">Fecha de ingreso</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="pesoMascota"
+            name="peso"
+            placeholder="Peso de la mascota"
+          />
+          <label for="pesoMascota">Peso de la mascota</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="alturaMascota"
+            name="altura"
+            placeholder="Altura de la mascota"
+          />
+          <label for="alturaMascota">Altura de la mascota</label>
+        </div>
+        <div class="text-center mb-5 d-flex justify-content-center">
+          <div class="me-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="window.location.href = '/presentar_mascota';"
+            >Volver</button>
+          </div>
+        </div>
+
+      </form>
     </div>
+  </div>
 </div>

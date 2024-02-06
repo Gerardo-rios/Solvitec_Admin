@@ -37,6 +37,7 @@ app.use(require("./routers/usuarios"))
 app.use(require("./routers/new_mascota"))
 app.use(require("./routers/email/crear_usuario"))
 app.use(require("./routers/email/iniciar_sesion"))
+app.use(require("./routers/email/cerrar_sesion"))
 app.use(require("./routers/citas"))
 
 app.get('/index', (req, res) => {

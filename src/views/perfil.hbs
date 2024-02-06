@@ -11,7 +11,22 @@
             <a class="nav-link" href="/cita">Citas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/cita">Cerrar sesión</a>
+            <a class="nav-link logout-link" href="/logout">Cerrar sesión</a>
         </li>
     </ul>
 </div>
+<script>
+    document.querySelector('logout-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/logout', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response) {
+                console.log('Sesión cerrada');
+                window.location.href = '/login';
+            }
+        }).catch(function(error) {
+            console.log('Error al cerrar sesión', error);
+        });
+    });
+</script>
