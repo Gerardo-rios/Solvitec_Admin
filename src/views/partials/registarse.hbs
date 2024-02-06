@@ -1,14 +1,14 @@
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <form class="border border-primary p-4 rounded shadow-lg" style="width: 400px;" action="/crear_usuario" method="POST">
+  <form id="registrationForm" class="border border-primary p-4 rounded shadow-lg" style="width: 400px;" action="/crear_usuario" method="POST">
     <h2 class="text-center mb-4">Registrarse</h2>
     <!-- Campos de registro -->
     <div class="mb-3">
       <label for="registerEmail" class="form-label">Correo electrónico</label>
-      <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Ingresa tu correo">
+      <input type="email" class="form-control" id="registerEmail" name="correo" placeholder="Ingresa tu correo" required>
     </div>
     <div class="mb-3">
       <label for="registerPassword" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Crea tu contraseña">
+      <input type="password" class="form-control" id="registerPassword" name="clave" placeholder="Crea tu contraseña" required>
     </div>
     <button type="submit" class="btn btn-primary btn-lg d-block mx-auto">Registrarse</button>
     <div class="mt-4 text-center">
@@ -16,3 +16,15 @@
     </div>
   </form>
 </div>
+<script>
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+  const password = document.getElementById('registerPassword').value;
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  // Verifica si la contraseña cumple con los requisitos
+  if (!regex.test(password)) {
+    event.preventDefault(); // Previene el envío del formulario
+    alert('La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y símbolos especiales.');
+  }
+});
+</script>

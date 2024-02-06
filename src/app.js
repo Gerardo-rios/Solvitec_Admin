@@ -3,9 +3,10 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const morgan = require("morgan");
 const { db } = require("./firebase");
-const session = require('express-session');
-const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
 const app = express();
+const {isLogged, auth} = require('./auth/session_auth');
+const { leerDeFirestore, escribirEnFirestore, leerConFiltroFirestore } = require('./utils/firestore_utils');
 
 // Settings
 app.set("port", process.env.PORT || 4000);
@@ -24,15 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(morgan('dev'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use(session({
-    secret: crypto.randomBytes(64).toString('hex'),
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-}));
-
-
-
+app.use(cookieParser());
 
 // Routes
 
@@ -57,7 +50,7 @@ app.get('/home', (req, res) => {
     res.render('home'); // Renderiza el archivo signup.hbs
 });
 
-app.get('/registarse', (req, res) => {
+app.get('/registrarse', isLogged, (req, res) => {
     res.render('partials/registarse'); // Renderiza el archivo signup.hbs
 });
 
@@ -74,11 +67,13 @@ app.get('/new_mascota', (req, res) => {
     res.render('new_mascota');
 });
 
-app.get('/presentar_mascota/:id', async(req, res) => {
-
+app.get('/presentar_mascota/:id', auth, async(req, res) => {
+    //TODO: Modificar para que se muestre la información de la mascota con el ID proporcionado
+    // Hay que conectar en la bd la tabla mascotas con la tabla de usuario a travez de cedula
+    // Para crear igual agregar la cedula como agregar el id del usuario
     let id = req.params.id
-    const peticion = await db.collection('user').doc(id).get()
-    const contacto = { id: id, datos: peticion.data() }
+    const contacto = await leerDeFirestore('user', id);
+    console.log(contacto);
     res.render('presentar_mascota', { contacto });
 });
 

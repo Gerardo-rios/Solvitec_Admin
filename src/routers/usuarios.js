@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router(); // Aquí se define el enrutador
 const { db } = require('../firebase');
-const auth = require('../auth/session_auth');
+const {auth} = require('../auth/session_auth');
 
 router.get('/usuarios/:mascotaId', auth, async(req, res) => {
     try {

@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { db } = require('../firebase');
 const route = Router();
-const auth = require('../auth/session_auth');
+const {auth} = require('../auth/session_auth');
 
 // Ruta para renderizar la página principal
 route.get('/anadir', auth, (req, res) => {
