@@ -1,7 +1,7 @@
 <h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-warning bg-gradient ">
+<div class="p-3 mb-2 bg-warning bg-gradient">
   <ul class="nav justify-content-center text-dark">
-    <li class="nav-item ">
+    <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
     </li>
     <li class="nav-item">
@@ -11,8 +11,15 @@
       <a class="nav-link" href="/cita">Citas</a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         Perfil
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -25,25 +32,31 @@
   </ul>
 </div>
 
-
-
 <div class="user mt-4 mb-4 mx-4">
   <div class="row">
     {{#each citas}}
-    <div class="col-md-3">
-      <div class="card" id={{this.id}}>
-        <div class="card-body">
-          <h5 class="card-title">{{this.datos.nombre}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Fecha: {{this.datos.fecha}}</h6>
-          <p class="card-text">Motivo: {{this.datos.motivo}}</p>
-
-          <div class="text-end">
-            <button type="button" class="btn btn-success">Aceptar</button>
-            <button type="button" class="btn btn-danger">Rechazar</button>
+      <div class="col-md-3">
+        <div class="card" id="cita-{{this.id}}">
+          <div class="card-body">
+            <h5 class="card-title">{{this.datos.nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Fecha:
+              {{this.datos.fecha}}</h6>
+            <p class="card-text">Motivo: {{this.datos.motivo}}</p>
+            <div class="text-end buttons">
+              <button
+                type="button"
+                class="btn btn-success"
+                data-id="{{this.id}}"
+              >Aceptar</button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-id="{{this.id}}"
+              >Rechazar</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     {{/each}}
   </div>
 </div>
