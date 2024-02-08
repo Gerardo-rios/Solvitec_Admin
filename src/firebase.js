@@ -1,9 +1,8 @@
 require('dotenv').config();
-const credentials = require('./server/firebase.json');
-//const admin = require('firebase-admin');
 const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore/lite');
 const { getAuth } = require('firebase/auth');
+const { getStorage } = require('firebase/storage');
 
 const firebaseAuthConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -17,11 +16,7 @@ const firebaseAuthConfig = {
 const firebaseApp = initializeApp(firebaseAuthConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
+const storage = getStorage(firebaseApp);
 
-// admin.initializeApp({
-//     credential: admin.credential.cert(credentials),
-// });
 
-//const db = admin.firestore();
-
-module.exports = { db, auth, firebaseApp};
+module.exports = { db, auth, firebaseApp, storage};

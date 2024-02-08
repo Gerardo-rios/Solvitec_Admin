@@ -9,6 +9,8 @@ const {
   addDoc,
 } = require("firebase/firestore/lite");
 const { db } = require("../firebase");
+const { storage } = require("../firebase");
+const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
 
 async function leerDeFirestore(coleccion, docId = null) {
   if (docId) {
@@ -74,9 +76,33 @@ async function obtenerUsuarioPorCitaId(citaId) {
   return usuario;
 }
 
+async function subirFotoAFirebaseStorage(
+  archivo,
+  nombreArchivo,
+  carpeta,
+  tipoMime
+) {
+  try {
+    const archivoRef = ref(storage, `${carpeta}/${nombreArchivo}`);
+
+    const metadatos = {
+      contentType: tipoMime,
+    };
+
+    const snapshot = await uploadBytes(archivoRef, archivo, metadatos);
+    
+    const url = await getDownloadURL(snapshot.ref);
+    return url;
+  } catch (error) {
+    console.error("Error al subir archivo a Firebase Storage:", error);
+    return null;
+  }
+}
+
 module.exports = {
   leerDeFirestore,
   escribirEnFirestore,
   leerConFiltroFirestore,
   obtenerUsuarioPorCitaId,
+  subirFotoAFirebaseStorage,
 };

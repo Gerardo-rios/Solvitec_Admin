@@ -11,7 +11,6 @@ route.get('/anadir', auth, (req, res) => {
 // Ruta para manejar el envío de un nuevo usuario
 route.post('/new-user', auth, async(req, res) => {
     try {
-        console.log(req.body);
         const newUser = {
             nombre: req.body.nombre,
             cedula: req.body.cedula,

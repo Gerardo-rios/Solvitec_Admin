@@ -44,6 +44,7 @@ app.use(require("./routers/email/iniciar_sesion"));
 app.use(require("./routers/email/cerrar_sesion"));
 app.use(require("./routers/citas"));
 app.use(require("./routers/registros_medicos"));
+app.use(require("./routers/presentar_mascota"));
 
 app.get("/index", (req, res) => {
   res.render("layouts/main"); // Renderiza el archivo signup.hbs
@@ -95,16 +96,6 @@ app.get("/usuarios", (req, res) => {
 
 app.get("/new_mascota", (req, res) => {
   res.render("new_mascota");
-});
-
-app.get("/presentar_mascota/:id", auth, async (req, res) => {
-  //TODO: Modificar para que se muestre la información de la mascota con el ID proporcionado
-  // Hay que conectar en la bd la tabla mascotas con la tabla de usuario a travez de cedula
-  // Para crear igual agregar la cedula como agregar el id del usuario
-  let id = req.params.id;
-  const contacto = await leerDeFirestore("user", id);
-  console.log(contacto);
-  res.render("presentar_mascota", { contacto });
 });
 
 app.get("/editar", (req, res) => {

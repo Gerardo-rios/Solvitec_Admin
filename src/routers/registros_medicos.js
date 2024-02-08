@@ -10,9 +10,6 @@ const {
 route.get("/registro_medico", auth, async (req, res) => {
   try {
     const registros = await obtenerTodosLosRegistrosMedicos();
-    registros.forEach((registro) => {
-      console.log("Registro:", registro.cita, registro.usuario);
-    });
     res.render("registros_medicos", {
       registrosMedicos: registros,
     });
@@ -30,13 +27,11 @@ async function obtenerTodosLosRegistrosMedicos() {
     registro["cita"] = await obtenerCitaPorId(registro.citaId);
     registro["usuario"] = await obtenerUsuarioPorCitaId(registro.citaId);
   }
-  console.log("Todos los registros médicos:", todosLosRegistros);
   return todosLosRegistros;
 }
 
 async function obtenerCitaPorId(citaId) {
   const cita = await leerDeFirestore("Citas", citaId);
-  console.log();
   if (cita.length) {
     return undefined;
   }

@@ -1,35 +1,49 @@
 const express = require("express");
 const router = express.Router();
-const { db } = require('../server/firebase.json');
-const {auth} = require('../auth/session_auth');
+const { auth } = require("../auth/session_auth");
+const multer = require("multer");
+const {
+  subirFotoAFirebaseStorage,
+  escribirEnFirestore,
+} = require("../utils/firestore_utils");
 
-router.post('/new-mascota', auth, async(req, res) => {
-    try {
-        console.log(req.body);
-        const userId = req.user.id; // Obtener userId del usuario autenticado
-        const newUser = {
-            mascota: req.body.mascota,
-            edad_mascota: req.body.edad_mascota,
-            especie: req.body.especie,
-            fecha: req.body.fecha,
-            peso: req.body.peso,
-            altura: req.body.altura,
-            userId: userId
-        };
+const upload = multer({ storage: multer.memoryStorage() });
 
-        // Obtén una referencia a la colección 'Mascotas' en Firestore
-        const mascotasCollection = db.collection('Mascotas');
+router.post("/new-mascota", auth, upload.single("foto"), async (req, res) => {
+  try {
+    const { nombre, raza, edad, dueno, categoria, peso, altura, sexo } =
+      req.body;
 
-        // Añade un nuevo documento a la colección
-        const result = await mascotasCollection.add(newUser);
+    console.log(req.body);
 
-        console.log('Documento guardado con ID:', result.id);
+    const tipoMime = req.file.mimetype;
+    const archivo = req.file;
 
-    } catch (error) {
-        console.error('Error al guardar documento:', error);
-        res.status(500).send('Error al guardar el documento');
-    }
+    const nombreArchivo = `${Date.now()}-${archivo.originalname}`;
+    const photo = await subirFotoAFirebaseStorage(
+      archivo.buffer,
+      nombreArchivo,
+      "pets",
+      tipoMime
+    );
+
+    await escribirEnFirestore("Mascotas", {
+      nombre,
+      raza,
+      edad,
+      dueño: dueno,
+      categoria,
+      peso,
+      altura,
+      sexo,
+      photo,
+    });
+
+    res.redirect("/archivos");
+  } catch (error) {
+    console.error("Error al guardar mascota:", error);
+    res.status(500).send("Error al guardar mascota");
+  }
 });
-
 
 module.exports = router;
