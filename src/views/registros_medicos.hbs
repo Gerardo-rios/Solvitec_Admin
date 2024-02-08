@@ -1,0 +1,83 @@
+<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
+<div class="p-3 mb-2 bg-warning bg-gradient">
+  <ul class="nav justify-content-center text-dark">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/archivos">Archivos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/cita">Citas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/registro_medico">Registro Medico</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Perfil
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/perfil">Perfil</a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="container mt-4">
+  {{#each registrosMedicos}}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{motivo}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Fecha de revisión:
+          {{fechaRevision}}</h6>
+        <p class="card-text">Sobre: {{sobre}}</p>
+        <p class="card-text">Próxima visita: {{proximaVisita}}</p>
+
+        {{#if cita}}
+          <div class="cita-info mt-3">
+            <h6>Detalles de la Cita:</h6>
+            <p>Descripción: {{cita.descripcion}}</p>
+            <p>Fecha: {{cita.fecha}}</p>
+            <p>Motivo: {{cita.motivo}}</p>
+            <p>Status: {{cita.status}}</p>
+          </div>
+        {{else}}
+          <div class="cita-info mt-3">
+            <p>Cita no encontrada.</p>
+          </div>
+        {{/if}}
+
+        {{#if usuario}}
+          <div class="usuario-info mt-3">
+            <h6>Información del Usuario:</h6>
+            <img
+              src="{{usuario.photo}}"
+              alt="Foto de usuario"
+              class="img-fluid rounded-circle"
+              style="width: 100px; height: 100px;"
+            />
+            <p>Nombre: {{usuario.nombre}}</p>
+            <p>Dirección: {{usuario.dirección}}</p>
+            <p>Correo: {{usuario.correo}}</p>
+            <p>Teléfono: {{usuario.telefono}}</p>
+          </div>
+        {{else}}
+          <div class="usuario-info mt-3">
+            <p>Usuario no encontrado.</p>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</div>

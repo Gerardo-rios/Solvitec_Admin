@@ -10,6 +10,9 @@
     <li class="nav-item">
       <a class="nav-link" href="/cita">Citas</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/registro_medico">Registro Medico</a>
+    </li>
     <li class="nav-item dropdown">
       <a
         class="nav-link dropdown-toggle"
@@ -32,75 +35,46 @@
 </div>
 
 <h2> Citas Aceptadas </h2>
-{{#each citas}}
-  <div class="col-md-3">
-    <div class="card" id="cita-{{this.id}}">
-      <div class="card-body">
-        <h5 class="card-title">{{this.datos.nombre}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Fecha:
-          {{this.datos.fecha}}</h6>
-        <p class="card-text">Motivo: {{this.datos.motivo}}</p>
-        <p class="card-text">Descripción: {{this.datos.descripcion}}</p>
+{{#if citas.length}}
+  {{#each citas}}
+    <div class="col-md-3">
+      <div class="card" id="cita-{{this.id}}">
+        <div class="card-body">
+          <h5 class="card-title">{{this.datos.nombre}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Fecha:
+            {{this.datos.fecha}}</h6>
+          <p class="card-text">Motivo: {{this.datos.motivo}}</p>
+          <p class="card-text">Descripción: {{this.datos.descripcion}}</p>
 
-        <div class="text-end">
-          <button
-            type="button"
-            class="btn btn-primary atenderCitaBtn"
-          >Atender</button>
-          <button
-            type="button"
-            class="btn btn-secondary noPresenteBtn"
-            data-id="{{this.id}}"
-          >No se presentó</button>
-        </div>
-
-        <!-- Formulario oculto para atender cita -->
-        <div class="formularioAtencion" style="display: none;">
-          <form>
-            <div class="form-group">
-              <label for="fechaAtencion-{{this.id}}">Fecha de Atención</label>
-              <input
-                type="date"
-                class="form-control"
-                id="fechaAtencion-{{this.id}}"
-                name="fechaAtencion"
-              />
-            </div>
-            <div class="form-group">
-              <label for="proximaFechaRevision-{{this.id}}">Próxima Fecha de
-                Revisión</label>
-              <input
-                type="date"
-                class="form-control"
-                id="proximaFechaRevision-{{this.id}}"
-                name="proximaFechaRevision"
-              />
-            </div>
-            <div class="form-group">
-              <label for="motivo-{{this.id}}">Motivo</label>
-              <input
-                type="text"
-                class="form-control"
-                id="motivo-{{this.id}}"
-                name="motivo"
-              />
-            </div>
-            <div class="form-group">
-              <label for="sobre-{{this.id}}">Sobre</label>
-              <textarea
-                class="form-control"
-                id="sobre-{{this.id}}"
-                name="sobre"
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-success">Guardar</button>
+          <div class="text-end">
             <button
               type="button"
-              class="btn btn-warning cancelarAtencionBtn"
-            >Cancelar</button>
-          </form>
+              class="btn btn-primary atenderCitaBtn"
+            >Atender</button>
+            <button
+              type="button"
+              class="btn btn-secondary noPresenteBtn"
+              data-id="{{this.id}}"
+            >No se presentó</button>
+          </div>
+
+          <!-- Formulario oculto para atender cita -->
+          <div class="formularioAtencion" style="display: none;">
+            <form>
+              <!-- Campos del formulario -->
+              <button type="submit" class="btn btn-success">Guardar</button>
+              <button
+                type="button"
+                class="btn btn-warning cancelarAtencionBtn"
+              >Cancelar</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+  {{/each}}
+{{else}}
+  <div class="alert alert-info" role="alert">
+    No existen citas aceptadas todavía.
   </div>
-{{/each}}
+{{/if}}

@@ -6,6 +6,7 @@ const {
   query,
   where,
   getDoc,
+  addDoc,
 } = require("firebase/firestore/lite");
 const { db } = require("../firebase");
 
@@ -67,6 +68,9 @@ async function obtenerUsuarioPorCitaId(citaId) {
   const cita = await leerDeFirestore("Citas", citaId);
   const userId = cita.id_usuario;
   const usuario = await leerDeFirestore("usuario", userId);
+  if (usuario.length) {
+    return undefined;
+  }
   return usuario;
 }
 

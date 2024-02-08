@@ -5,7 +5,6 @@ const { auth } = require("../auth/session_auth");
 const {
   escribirEnFirestore,
   leerConFiltroFirestore,
-  obtenerUsuarioPorCitaId,
 } = require("../utils/firestore_utils");
 const { doc, setDoc, collection } = require("firebase/firestore/lite");
 const crypto = require("crypto");
@@ -32,8 +31,7 @@ route.get("/cita", auth, async (req, res) => {
 route.post("/cita/atender", auth, async (req, res) => {
   try {
     const { id, datos } = req.body;
-    const usuario = await obtenerUsuarioPorCitaId(id);
-    await escribirRegistroMedico(usuario.cedula, datos);
+    await escribirRegistroMedico(datos);
     await escribirEnFirestore("Citas", { status: "atendida" }, id);
     res.send("Cita atendida exitosamente");
   } catch (error) {
@@ -49,12 +47,12 @@ route.post("/cita/atender", auth, async (req, res) => {
 route.post("/cita/no-presentada", auth, async (req, res) => {
   try {
     const { id } = req.body;
-    const usuario = await obtenerUsuarioPorCitaId(id);
-    await escribirRegistroMedico(usuario.cedula, {
+    await escribirRegistroMedico({
       fechaRevision: new Date().toISOString(),
       motivo: "No se presentó",
       proximaVisita: "",
-      sobre: "",
+      sobre: "No asistió",
+      citaId: id,
     });
     await escribirEnFirestore("Citas", { status: "cancelada" }, id);
     res.send("Cita marcada como no presentada exitosamente");
@@ -68,32 +66,16 @@ route.post("/cita/no-presentada", auth, async (req, res) => {
 });
 
 // Función para escribir un registro médico
-async function escribirRegistroMedico(cedula, datos) {
-  // Referencia al documento de la cédula
-  const cedulaRef = doc(db, "registro_medico", cedula);
-
-  // Generar UUIDs o utilizar los proporcionados por alguna lógica específica
-  const primerUUID = crypto.randomUUID();
-  const segundoUUID = crypto.randomUUID();
-
-  // Combinar las referencias para apuntar al documento final usando los UUIDs como parte del path
-  const documentoFinalRef = doc(
-    db,
-    "registro_medico",
-    `${cedula}/${primerUUID}/${segundoUUID}`
-  );
-
-  // Escribir los datos en el documento final
-  await setDoc(documentoFinalRef, {
+async function escribirRegistroMedico(datos) {
+  const data = {
     fechaRevision: datos.fechaRevision,
     motivo: datos.motivo,
     proximaVisita: datos.proximaVisita,
     sobre: datos.sobre,
-  });
+  };
 
-  console.log(
-    `Datos escritos correctamente en: registro_medico/${cedula}/${primerUUID}/${segundoUUID}`
-  );
+  const response = await escribirEnFirestore("registro_medico", data);
+  console.log("Registro médico creado:", response);
 }
 
 module.exports = route;

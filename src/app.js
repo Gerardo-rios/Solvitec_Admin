@@ -43,6 +43,7 @@ app.use(require("./routers/email/crear_usuario"));
 app.use(require("./routers/email/iniciar_sesion"));
 app.use(require("./routers/email/cerrar_sesion"));
 app.use(require("./routers/citas"));
+app.use(require("./routers/registros_medicos"));
 
 app.get("/index", (req, res) => {
   res.render("layouts/main"); // Renderiza el archivo signup.hbs
