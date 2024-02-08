@@ -16,16 +16,17 @@ route.get("/home", auth, async (req, res) => {
       "==",
       "pendiente",
     ]);
-    res.render("citas", { citas: citas, scripts: '<script src="src/scripts/home_script.js"></script>' });
+    res.render("home", {
+      citas: citas,
+      scripts: '<script src="/js/home_script.js"></script>',
+    });
   } catch (error) {
     // El manejo de errores ya se hace dentro de leerConFiltroFirestore, pero puedes añadir acciones adicionales si es necesario
     console.error("Error al cargar citas:", error);
-    res
-      .status(500)
-      .render("error", {
-        errorMessage: "Error al cargar citas" + error,
-        errorCode: "500",
-      });
+    res.status(500).render("error", {
+      errorMessage: "Error al cargar citas" + error,
+      errorCode: "500",
+    });
   }
 });
 
@@ -33,13 +34,13 @@ route.get("/home", auth, async (req, res) => {
 route.post("/home/aceptar-cita", auth, async (req, res) => {
   try {
     const { id } = req.body;
-    await escribirEnFirestore("Citas", id, { status: "aceptada" });
-    res.redirect("/home");
+    await escribirEnFirestore("Citas", { status: "aceptada" }, id);
+    res.send("Cita aceptada exitosamente");
   } catch (error) {
     console.error("Error al aceptar cita:", error);
     res.status(500).render("error", {
-        errorMessage: "Error al aceptar cita: " + error,
-        errorCode: "500",
+      errorMessage: "Error al aceptar cita: " + error,
+      errorCode: "500",
     });
   }
 });
@@ -48,13 +49,13 @@ route.post("/home/aceptar-cita", auth, async (req, res) => {
 route.post("/home/rechazar-cita", auth, async (req, res) => {
   try {
     const { id } = req.body;
-    await escribirEnFirestore("Citas", id, { status: "rechazada" });
-    res.redirect("/home");
+    await escribirEnFirestore("Citas", { status: "rechazada" }, id);
+    res.send("Cita rechazada exitosamente");
   } catch (error) {
     console.error("Error al rechazar cita:", error);
     res.status(500).render("error", {
-        errorMessage: "Error al rechazar cita: " + error,
-        errorCode: "500",
+      errorMessage: "Error al rechazar cita: " + error,
+      errorCode: "500",
     });
   }
 });

@@ -28,7 +28,12 @@ router.post("/crear_usuario", isLogged, async (req, res) => {
   }
   try {
     const user = await createUserWithEmailAndPassword(auth, correo, clave);
-    await actualizarAdmin(correo);
+    await actualizarAdmin(
+      correo,
+      user.user.displayName,
+      user.user.emailVerified,
+      user.user.photoURL
+    );
 
     if (!req.cookies.user) {
       res.cookie("user", user.user, {
@@ -55,10 +60,16 @@ async function verificarAdminExistente() {
   return false;
 }
 
-async function actualizarAdmin(correo) {
+async function actualizarAdmin(correo, nombre, verificado, foto) {
   await escribirEnFirestore(
     "admin_user",
-    { creado: true, correo: correo },
+    {
+      creado: true,
+      correo: correo,
+      nombre: nombre,
+      verificado: verificado,
+      foto: foto,
+    },
     "admin_user"
   );
 }

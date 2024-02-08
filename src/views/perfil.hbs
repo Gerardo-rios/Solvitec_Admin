@@ -1,32 +1,71 @@
 <h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-warning bg-gradient ">
-    <ul class="nav justify-content-center text-dark">
-        <li class="nav-item ">
-            <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/archivos">Archivos</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/cita">Citas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link logout-link" href="/logout">Cerrar sesión</a>
-        </li>
-    </ul>
+<div class="p-3 mb-2 bg-warning bg-gradient">
+  <ul class="nav justify-content-center text-dark">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/archivos">Archivos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/cita">Citas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link logout-link" href="/logout">Cerrar sesión</a>
+    </li>
+  </ul>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <!-- Foto de perfil -->
+      <img
+        id="fotoPerfil"
+        src=""
+        alt="Foto de perfil"
+        class="profile-pic mb-3"
+        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+      />
+    </div>
+    <div class="col-md-8">
+      <h2>Perfil del Administrador
+        <button
+          id="editarPerfilBtn"
+          class="btn btn-small btn-secondary"
+        >Editar</button></h2>
+      <!-- Información del perfil -->
+      <p><strong>Nombre:</strong> {{perfil.nombre}}</p>
+      <p><strong>Correo Electrónico:</strong> {{perfil.correo}}</p>
+      <p><strong>Correo Verificado:</strong>
+        {{#if perfil.verificado}}Sí{{else}}No{{/if}}</p>
+
+      <!-- Formulario de edición (oculto inicialmente) -->
+      <div id="formularioEdicion" style="display: none;">
+        <div class="form-group">
+          <label for="nombrePerfil">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombrePerfil"
+            value="{{perfil.nombre}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fotoPerfilUrl">Enlace de la Foto</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fotoPerfilUrl"
+            value="{{perfil.foto}}"
+          />
+        </div>
+        <button id="guardarCambiosBtn" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-    document.querySelector('logout-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        fetch('/logout', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response) {
-                console.log('Sesión cerrada');
-                window.location.href = '/login';
-            }
-        }).catch(function(error) {
-            console.log('Error al cerrar sesión', error);
-        });
-    });
+  var srcFoto = "{{perfil.foto}}" ||
+  "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg";
+  document.getElementById('fotoPerfil').src = srcFoto;
 </script>
