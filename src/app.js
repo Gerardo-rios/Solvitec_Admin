@@ -118,19 +118,6 @@ app.get("/datos_usuario", function (req, res) {
   res.render("partials/datos_usuario"); // Esta línea renderiza la vista "crear_usuario.hbs"
 });
 
-app.get("/borrar/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    // Eliminar el documento con el ID proporcionado de la colección 'user'
-    await db.collection("user").doc(id).delete();
-    console.log("Documento eliminado correctamente");
-    res.redirect("/archivos"); // Redirigir a la página de archivos después de la eliminación
-  } catch (error) {
-    console.error("Error al eliminar el documento:", error);
-    res.status(500).send("Error al eliminar el documento");
-  }
-});
-
 // Static files
 app.use(express.static(path.join(__dirname, "public")));
 

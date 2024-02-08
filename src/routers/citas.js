@@ -6,8 +6,6 @@ const {
   escribirEnFirestore,
   leerConFiltroFirestore,
 } = require("../utils/firestore_utils");
-const { doc, setDoc, collection } = require("firebase/firestore/lite");
-const crypto = require("crypto");
 
 // Ruta para marcar una cita como aceptada
 route.get("/cita", auth, async (req, res) => {

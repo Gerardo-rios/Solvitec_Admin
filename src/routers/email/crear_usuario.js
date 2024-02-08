@@ -42,6 +42,7 @@ router.post("/crear_usuario", isLogged, async (req, res) => {
         secure: false,
       });
     }
+    res.redirect("/perfil");
   } catch (error) {
     console.error("Error al registrar usuario:", error.message);
     console.error("Código de error:", error.code);

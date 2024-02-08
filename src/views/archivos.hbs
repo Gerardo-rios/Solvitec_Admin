@@ -1,7 +1,7 @@
 <h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-warning bg-gradient ">
+<div class="p-3 mb-2 bg-warning bg-gradient">
   <ul class="nav justify-content-center text-dark">
-    <li class="nav-item ">
+    <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
     </li>
     <li class="nav-item">
@@ -14,8 +14,15 @@
       <a class="nav-link" href="/registro_medico">Registro Medico</a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         Perfil
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,14 +34,109 @@
     </li>
   </ul>
 </div>
-  
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class=" col-md-6 mt-4 mb-4">
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#formularioContactoModal"
+>
+  Añadir Nuevo Contacto
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="formularioContactoModal"
+  tabindex="-1"
+  aria-labelledby="modalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Nuevo Contacto</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Cerrar"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="nuevoContactoForm" action="/archivos/nuevo" method="post">
+          <div class="mb-3">
+            <label for="cedulaModal" class="form-label">Cédula</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cedulaModal"
+              name="cedula"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="correoModal" class="form-label">Correo</label>
+            <input
+              type="email"
+              class="form-control"
+              id="correoModal"
+              name="correo"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="direccionModal" class="form-label">Dirección</label>
+            <input
+              type="text"
+              class="form-control"
+              id="direccionModal"
+              name="direccion"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="nombreModal" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombreModal"
+              name="nombre"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="photoModal" class="form-label">Foto (URL)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="photoModal"
+              name="photo"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="telefonoModal" class="form-label">Teléfono</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="telefonoModal"
+              name="telefono"
+            />
+          </div>
+          <!-- Botón mover dentro del form -->
+          <input
+            type="submit"
+            value="Guardar Contacto"
+            class="btn btn-success"
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Cerrar</button>
+        <!-- Botón de guardar contacto movido dentro del form -->
+      </div>
     </div>
   </div>
 </div>
@@ -48,15 +150,16 @@
             <!-- Mostrar el nombre del contacto -->
             <h5 class="card-title">{{this.nombre}}</h5>
             <!-- Agregar otros detalles del contacto -->
-            <h6 class="card-subtitle mb-2 text-muted">Teléfono: {{this.telefono}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Teléfono:
+              {{this.telefono}}</h6>
             <p class="card-text">Correo: {{this.correo}}</p>
             <!-- Agregar enlace para borrar el contacto -->
             <a href="/borrar/{{this.id}}" class="card-link">Borrar</a>
-            <a href="/presentar_mascota/{{this.id}}" class="card-link">Ver detalles</a>
+            <a href="/presentar_mascota/{{this.id}}" class="card-link">Ver
+              detalles</a>
           </div>
         </div>
       </div>
     {{/each}}
   </div>
 </div>
-
