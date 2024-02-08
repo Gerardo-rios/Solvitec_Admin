@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        alert(response.json());
+        alert("Cita " + accion + " exitosamente");
         window.location.reload();
       })
       .then((data) => {

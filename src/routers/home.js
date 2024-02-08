@@ -35,7 +35,7 @@ route.post("/home/aceptar-cita", auth, async (req, res) => {
   try {
     const { id } = req.body;
     await escribirEnFirestore("Citas", { status: "aceptada" }, id);
-    res.send("Cita aceptada exitosamente");
+    res.status(200).json({ message: "Cita aceptada exitosamente" });
   } catch (error) {
     console.error("Error al aceptar cita:", error);
     res.status(500).render("error", {
