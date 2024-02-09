@@ -121,6 +121,8 @@
             id="duenoMascota"
             name="dueno"
             placeholder="Cedula del dueño de la mascota"
+            value="{{cedula}}"
+            readonly="readonly"
           />
           <label for="duenoMascota">Cedula Dueño</label>
         </div>
@@ -143,7 +145,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              onclick="window.location.href = '/presentar_mascota';"
+              onclick="window.history.back()"
             >Volver</button>
           </div>
         </div>

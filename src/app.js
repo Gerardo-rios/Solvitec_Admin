@@ -94,8 +94,8 @@ app.get("/usuarios", (req, res) => {
   res.render("usuarios");
 });
 
-app.get("/new_mascota", (req, res) => {
-  res.render("new_mascota");
+app.get("/new_mascota/:cedula/:userId", (req, res) => {
+  res.render("new_mascota", { cedula: req.params.cedula, userId: req.params.userId });
 });
 
 app.get("/crear_usuario", function (req, res) {

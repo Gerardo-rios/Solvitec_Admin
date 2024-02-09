@@ -11,10 +11,10 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/new-mascota", auth, upload.single("foto"), async (req, res) => {
   try {
+    const userId = req.body.userId;
+  
     const { nombre, raza, edad, dueno, categoria, peso, altura, sexo } =
       req.body;
-
-    console.log(req.body);
 
     const tipoMime = req.file.mimetype;
     const archivo = req.file;
@@ -39,7 +39,7 @@ router.post("/new-mascota", auth, upload.single("foto"), async (req, res) => {
       photo,
     });
 
-    res.redirect("/archivos");
+    res.redirect(`/presentar_mascota/${userId}`);
   } catch (error) {
     console.error("Error al guardar mascota:", error);
     res.status(500).send("Error al guardar mascota");

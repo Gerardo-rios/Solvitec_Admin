@@ -18,7 +18,7 @@ router.get("/presentar_mascota/:id/:cita_id?", auth, async (req, res) => {
     cedula,
   ]);
 
-  res.render("presentar_mascota", { contacto: usuario, mascotas: mascotas, cita_id: idCita });
+  res.render("presentar_mascota", { contacto: usuario, mascotas: mascotas, cita_id: idCita, id: id});
 
 });
 
