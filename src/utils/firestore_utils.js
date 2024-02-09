@@ -76,6 +76,14 @@ async function obtenerUsuarioPorCitaId(citaId) {
   return usuario;
 }
 
+async function obtenerUsuarioPorId(userId) {
+  const usuario = await leerDeFirestore("usuario", userId);
+  if (usuario.length) {
+    return undefined;
+  }
+  return usuario;
+}
+
 async function subirFotoAFirebaseStorage(
   archivo,
   nombreArchivo,
@@ -105,4 +113,5 @@ module.exports = {
   leerConFiltroFirestore,
   obtenerUsuarioPorCitaId,
   subirFotoAFirebaseStorage,
+  obtenerUsuarioPorId,
 };

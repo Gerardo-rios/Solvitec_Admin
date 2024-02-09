@@ -1,0 +1,41 @@
+<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
+
+<div class="p-3 mb-2 bg-info text-dark"><ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/archivos">Archivos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/cita">Citas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/registro_medico">Registro Medico</a>
+    </li>
+  </ul>
+</div>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Chat</h1>
+    
+        <div id="areaDeMensajes" class="border rounded p-3" style="height: 400px; overflow-y: scroll;">
+            {{#each mensajes}}
+                <div class="mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">De: {{datos.idRemitente}} - {{datos.fechaYhora}}</h6>
+                            <p class="card-text">{{datos.mensaje}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+        <!-- Formulario para enviar mensajes -->
+        <form id="formularioEnvio" class="d-flex mt-3" action="/mensajes/enviar" method="post">
+            <input type="hidden" id="idRemitente" name="idDestino" value="{{usuario}}">
+            <input type="text" class="form-control me-2" id="textoMensaje" name="mensaje" placeholder="Escribe un mensaje...">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
