@@ -28,10 +28,20 @@ route.get("/cita", auth, async (req, res) => {
 // Ruta para marcar una cita como atendida
 route.post("/cita/atender", auth, async (req, res) => {
   try {
-    const { id, datos } = req.body;
-    await escribirRegistroMedico(datos);
-    await escribirEnFirestore("Citas", { status: "atendida" }, id);
-    res.send("Cita atendida exitosamente");
+    const { fechaAtencion, proximaFechaRevision, motivo, sobre, citaId, mascotaId } = req.body;
+
+    await escribirRegistroMedico({
+      fechaRevision: fechaAtencion,
+      motivo: motivo,
+      proximaVisita: proximaFechaRevision,
+      sobre: sobre,
+      citaId: citaId,
+      mascotaId: mascotaId,
+    });
+    if (citaId) {
+      await escribirEnFirestore("Citas", { status: "atendida" }, citaId);
+    }
+    res.redirect("/registro_medico");
   } catch (error) {
     console.error("Error al atender cita:", error);
     res.render("error", {
@@ -70,6 +80,8 @@ async function escribirRegistroMedico(datos) {
     motivo: datos.motivo,
     proximaVisita: datos.proximaVisita,
     sobre: datos.sobre,
+    citaId: datos.citaId,
+    mascotaId: datos.mascotaId,
   };
 
   const response = await escribirEnFirestore("registro_medico", data);

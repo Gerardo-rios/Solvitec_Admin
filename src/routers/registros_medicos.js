@@ -14,9 +14,10 @@ route.get("/registro_medico", auth, async (req, res) => {
       registrosMedicos: registros,
     });
   } catch (error) {
+    console.log(error);
     res.render("error", {
       errorMessage: "Error al cargar registros médicos: " + error,
-      errorCode: "500",
+      errorCode: error.code || "500",
     });
   }
 });
@@ -26,6 +27,7 @@ async function obtenerTodosLosRegistrosMedicos() {
   for (let registro of todosLosRegistros) {
     registro["cita"] = await obtenerCitaPorId(registro.citaId);
     registro["usuario"] = await obtenerUsuarioPorCitaId(registro.citaId);
+    registro["mascota"] = await obtenerMascotaPorId(registro.mascotaId);
   }
   return todosLosRegistros;
 }
@@ -37,6 +39,14 @@ async function obtenerCitaPorId(citaId) {
   }
   cita.fecha = new Date(cita.fecha).toLocaleDateString("es-ES");
   return cita;
+}
+
+async function obtenerMascotaPorId(mascotaId) {
+  const mascota = await leerDeFirestore("Mascotas", mascotaId);
+  if (mascota.length) {
+    return undefined;
+  }
+  return mascota;
 }
 
 module.exports = route;

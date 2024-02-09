@@ -98,9 +98,6 @@ app.get("/new_mascota", (req, res) => {
   res.render("new_mascota");
 });
 
-app.get("/editar", (req, res) => {
-  res.render("editar");
-});
 app.get("/crear_usuario", function (req, res) {
   res.render("partials/crear_usuario"); // Esta línea renderiza la vista "crear_usuario.hbs"
 });

@@ -1,6 +1,6 @@
 function auth(req, res, next) {
     if (!req.cookies.user) {
-        res.redirect('login'); // Si no está logueado, redirige al login
+        res.redirect('/login'); // Si no está logueado, redirige al login
     }   else {
         next(); // Si está logueado, pasa al siguiente middleware
     }

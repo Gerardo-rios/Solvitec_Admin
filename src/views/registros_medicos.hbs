@@ -58,6 +58,26 @@
           </div>
         {{/if}}
 
+        {{#if mascota}}
+          <div class="mascota-info mt-3">
+            <h6>Información de la Mascota:</h6>
+            <img
+              src="{{mascota.photo}}"
+              alt="Foto de mascota"
+              class="img-fluid rounded-circle"
+              style="width: 100px; height: 100px;"
+            />
+            <p>Nombre: {{mascota.nombre}}</p>
+            <p>Raza: {{mascota.raza}}</p>
+            <p>Categoría: {{mascota.categoria}}</p>
+            <p>Edad: {{mascota.edad}}</p>
+            <p>Peso: {{mascota.peso}}</p>
+          </div>
+        {{else}}
+          <div class="usuario-info mt-3">
+            <p>Mascota no encontrada.</p>
+          </div>
+        {{/if}}
         {{#if usuario}}
           <div class="usuario-info mt-3">
             <h6>Información del Usuario:</h6>
