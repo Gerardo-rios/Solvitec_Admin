@@ -6,9 +6,9 @@ const {
   leerConFiltroFirestore,
 } = require("../utils/firestore_utils");
 
-router.get("/presentar_mascota/:id/:cita_id?", auth, async (req, res) => {
-  let id = req.params.id;
-  let idCita = req.params.cita_id;
+router.get("/presentar_mascota", auth, async (req, res) => {
+
+  const { id, cita_id } = req.query;
 
   const usuario = await leerDeFirestore("usuario", id);
   const cedula = usuario.cedula;
@@ -18,13 +18,29 @@ router.get("/presentar_mascota/:id/:cita_id?", auth, async (req, res) => {
     cedula,
   ]);
 
-  res.render("presentar_mascota", { contacto: usuario, mascotas: mascotas, cita_id: idCita, id: id});
+  for (mascota of mascotas) {
+    mascota["datos"]["registro_medico"] = await leerConFiltroFirestore(
+      "registro_medico",
+      ["mascotaId", "==", mascota.id]
+    );
+  }
 
+  res.render("presentar_mascota", {
+    contacto: usuario,
+    mascotas: mascotas,
+    cita_id: cita_id,
+    id: id,
+  });
 });
 
-router.get("/editar/:id_mascota/:id_cita?", (req, res) => {
-  res.render("editar", { id_mascota: req.params.id_mascota, id_cita: req.params.id_cita});
-});
+router.get("/editar", (req, res) => {
+  const { mascota_id, cita_id, persona_id } = req.query;
 
+  res.render("editar", {
+    id_mascota: mascota_id,
+    id_cita: cita_id,
+    id_persona: persona_id,
+  });
+});
 
 module.exports = router;

@@ -66,10 +66,40 @@
               Dueño:
               {{datos.dueño}}
             </p>
-            <a href="/editar/{{id}}/{{../cita_id}}" class="card-link">Atender</a>
+            <a href="/editar?mascota_id={{id}}{{#if ../cita_id}}&cita_id={{../cita_id}}{{/if}}{{#if ../id}}&persona_id={{../id}}{{/if}}" class="card-link">Atender</a>
+          </div>
+
+          <button class="btn btn-primary toggle-records" data-id="{{id}}">Registros Médicos</button>
+
+          <div id="registro-medico-{{id}}" class="registro-medico" style="display: none;">
+            {{#each datos.registro_medico}}
+              <div class="registro border p-3 mb-3">
+                <p><strong>Sobre:</strong> {{this.datos.sobre}}</p>
+                <p><strong>Motivo:</strong> {{this.datos.motivo}}</p>
+                <p><strong>Fecha de Revisión:</strong> {{this.datos.fechaRevision}}</p>
+                <p><strong>Próxima Visita:</strong> {{this.datos.proximaVisita}}</p>
+              </div>
+            {{/each}}
           </div>
         </div>
       </div>
     {{/each}}
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.toggle-records').forEach(button => {
+      button.addEventListener('click', function() {
+        let mascotaId = this.getAttribute('data-id');
+        let registroMedicoDiv = document.getElementById(`registro-medico-${mascotaId}`);
+        if (registroMedicoDiv.style.display === "none") {
+          registroMedicoDiv.style.display = "block";
+          this.textContent = "Ocultar Registros Médicos";
+        } else {
+          registroMedicoDiv.style.display = "none";
+          this.textContent = "Mostrar Registros Médicos";
+        }
+      });
+    });
+  });
+</script>
