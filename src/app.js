@@ -79,6 +79,8 @@ app.post("/perfil/editar", async (req, res) => {
   }
 });
 
+app.use(express.static('src/public'));
+
 app.get("/home", (req, res) => {
   res.render("home"); // Renderiza el archivo signup.hbs
 });

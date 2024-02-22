@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const { auth } = require("../../firebase");
@@ -12,8 +13,7 @@ router.post("/crear_usuario", isLogged, async (req, res) => {
   const adminExiste = await verificarAdminExistente();
   if (adminExiste) {
     res.status(500).render("error", {
-      errorMessage:
-        "Solo se puede crear un usuario administrador. Ya existe uno.",
+      errorMessage:   "Solo se puede crear un usuario administrador. Ya existe uno.",
       errorCode: 500,
     });
     return;
@@ -34,7 +34,6 @@ router.post("/crear_usuario", isLogged, async (req, res) => {
       user.user.emailVerified,
       user.user.photoURL
     );
-
     if (!req.cookies.user) {
       res.cookie("user", user.user, {
         maxAge: 3600 * 1000,
@@ -52,7 +51,6 @@ router.post("/crear_usuario", isLogged, async (req, res) => {
     });
   }
 });
-
 async function verificarAdminExistente() {
   const adminList = await leerDeFirestore("admin_user");
   if (adminList.length > 0 && adminList[0].creado) {
@@ -60,7 +58,6 @@ async function verificarAdminExistente() {
   }
   return false;
 }
-
 async function actualizarAdmin(correo, nombre, verificado, foto) {
   await escribirEnFirestore(
     "admin_user",
@@ -74,5 +71,4 @@ async function actualizarAdmin(correo, nombre, verificado, foto) {
     "admin_user"
   );
 }
-
 module.exports = router;

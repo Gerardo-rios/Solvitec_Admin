@@ -1,23 +1,43 @@
-<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-warning bg-gradient">
-  <ul class="nav justify-content-center text-dark">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/archivos">Archivos</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/cita">Citas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/registro_medico">Registro Medico</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link logout-link" href="/logout">Cerrar sesión</a>
-    </li>
-  </ul>
-</div>
+<div id="logo-section" class="text-center mt-1 mb-4">
+    <img src="images/img1.jpg" alt="Logo" id="logo-image">
+  </div>
+
+  <div id="navbar-section" class="custom-navbar">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active text-dark" aria-current="page" href="/home">
+          <i class='bx bx-home-smile'></i>
+          Inicio
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/archivos">
+          <i class='bx bx-folder-plus'></i>
+          Archivos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/cita">
+          <i class='bx bxs-calendar-plus'></i>
+          Citas
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class='bx bx-user'></i>
+          Perfil
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/perfil">Perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-4">
@@ -30,17 +50,21 @@
         style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
       />
     </div>
-    <div class="col-md-8">
-      <h2>Perfil del Administrador
-        <button
-          id="editarPerfilBtn"
-          class="btn btn-small btn-secondary"
-        >Editar</button></h2>
+    <div class="col-md-8 ">
+      <h2>Veterinaria Solvitec
+        </h2>
       <!-- Información del perfil -->
       <p><strong>Nombre:</strong> {{perfil.nombre}}</p>
+      
       <p><strong>Correo Electrónico:</strong> {{perfil.correo}}</p>
-      <p><strong>Correo Verificado:</strong>
-        {{#if perfil.verificado}}Sí{{else}}No{{/if}}</p>
+      <p><strong>Telefono:</strong> {{perfil.telefono}}</p>
+      <p><strong>Direccion:</strong> {{perfil.direccion}}</p>
+      <p><strong>Servicios:</strong> {{perfil.servicios}}</p>
+
+     <div class="text-center"> <!-- Agrega esta línea para centrar el botón -->
+    <button id="editarPerfilBtn" class="btn btn-primary">Editar</button>
+    </div>
+  </div>
 
       <!-- Formulario de edición (oculto inicialmente) -->
       <div id="formularioEdicion" style="display: none;">
@@ -53,6 +77,34 @@
             value="{{perfil.nombre}}"
           />
         </div>
+       
+         <div class="form-group">
+          <label for="telefonoPerfil">Telefono</label>
+          <input
+            type="text"
+            class="form-control"
+            id="telefonoPerfil"
+            value="{{perfil.telefono}}"
+          />
+        </div>
+         <div class="form-group">
+          <label for="direccionPerfil">Direccion</label>
+          <input
+            type="text"
+            class="form-control"
+            id="direccionPerfil"
+            value="{{perfil.direccion}}"
+          />
+        </div>
+         <div class="form-group">
+          <label for="serviciosPerfil">Servicios</label>
+          <input
+            type="text"
+            class="form-control"
+            id="serviciosPerfil"
+            value="{{perfil.servicios}}"
+          />
+        </div>
         <div class="form-group">
           <label for="fotoPerfilUrl">Enlace de la Foto</label>
           <input
@@ -62,11 +114,23 @@
             value="{{perfil.foto}}"
           />
         </div>
+        
+        <!-- Agrega más campos según sea necesario -->
         <button id="guardarCambiosBtn" class="btn btn-primary">Guardar Cambios</button>
       </div>
     </div>
   </div>
+  
 </div>
+
+<footer class="d-flex justify-content-center align-items-center ">
+  <div class="col-md-4 text-center">
+    <span class="mb-3 mb-md-0">© 2024 CLINICA SOLVITEC</span>
+  </div>
+</footer>
+
+
+
 <script>
   var srcFoto = "{{perfil.foto}}" ||
   "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg";

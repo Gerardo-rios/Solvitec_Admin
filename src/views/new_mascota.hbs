@@ -1,20 +1,44 @@
-<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-warning bg-gradient">
-  <ul class="nav justify-content-center text-dark">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/archivos">Archivos</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/cita">Citas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/registro_medico">Registro Medico</a>
-    </li>
-  </ul>
-</div>
+<div id="logo-section" class="text-center mt-1 mb-4">
+    <img src="images/img1.jpg" alt="Logo" id="logo-image">
+  </div>
+
+  <div id="navbar-section" class="custom-navbar">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active text-dark" aria-current="page" href="/home">
+          <i class='bx bx-home-smile'></i>
+          Inicio
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/archivos">
+          <i class='bx bx-folder-plus'></i>
+          Archivos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/cita">
+          <i class='bx bxs-calendar-plus'></i>
+          Citas
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class='bx bx-user'></i>
+          Perfil
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/perfil">Perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+
 
 <h1 class="text-center mt-4 mb-4">Ingresa los datos de la mascota</h1>
 <div class="container" style="font-family: 'Arial', sans-serif;">
@@ -127,15 +151,16 @@
           <label for="duenoMascota">Cedula Dueño</label>
         </div>
         <!-- Foto -->
-        <div class="form-floating mb-3">
-          <input
-            type="file"
-            id="fotoMascota"
-            name="foto"
-            class="form-control"
-          />
-          <label for="fotoMascota">Foto</label>
-        </div>
+        <div class="form-floating mb-3 d-md-none">
+  <input
+    type="file"
+    id="fotoMascota"
+    name="foto"
+    class="form-control"
+  />
+  <label for="fotoMascota">Foto</label>
+</div>
+
         <!-- Botones -->
         <div class="text-center mb-5 d-flex justify-content-center">
           <div class="me-2">
@@ -153,3 +178,4 @@
     </div>
   </div>
 </div>
+

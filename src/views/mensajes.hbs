@@ -1,41 +1,74 @@
-<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
+<div id="logo-section" class="text-center mt-1 mb-4">
+  <img src="/images/img1.jpg" alt="Logo" id="logo-image">
+</div>
 
-<div class="p-3 mb-2 bg-info text-dark"><ul class="nav justify-content-center">
+<div id="navbar-section" class="custom-navbar">
+  <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+      <a class="nav-link active text-dark" aria-current="page" href="/home">
+        <i class='bx bx-home-smile'></i>
+        Inicio
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/archivos">Archivos</a>
+      <a class="nav-link text-dark" href="/archivos">
+        <i class='bx bx-folder-plus'></i>
+        Archivos
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/cita">Citas</a>
+      <a class="nav-link text-dark" href="/cita">
+        <i class='bx bxs-calendar-plus'></i>
+        Citas
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/registro_medico">Registro Medico</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class='bx bx-user'></i>
+        Perfil
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/perfil">Perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+      </div>
     </li>
   </ul>
 </div>
 
-    <div class="container mt-5">
-        <h1 class="text-center">Chat</h1>
-    
-        <div id="areaDeMensajes" class="border rounded p-3" style="height: 400px; overflow-y: scroll;">
-            {{#each mensajes}}
-                <div class="mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">De: {{datos.idRemitente}} - {{datos.fechaYhora}}</h6>
-                            <p class="card-text">{{datos.mensaje}}</p>
-                        </div>
-                    </div>
-                </div>
-            {{/each}}
-        </div>
 
-        <!-- Formulario para enviar mensajes -->
-        <form id="formularioEnvio" class="d-flex mt-3" action="/mensajes/enviar" method="post">
-            <input type="hidden" id="idRemitente" name="idDestino" value="{{usuario}}">
-            <input type="text" class="form-control me-2" id="textoMensaje" name="mensaje" placeholder="Escribe un mensaje...">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
+
+
+<div class="container mt-5">
+  <h1 class="text-center">Chat</h1>
+
+  <div id="areaDeMensajes" class="border rounded p-3"
+    style="height: 400px; overflow-y: scroll;background-color: #e5ddd5;background-size: cover;">
+    {{#each mensajes}}
+    <div class="mb-2" style="display:flex; flex-direction: column;padding: 10px;">
+      <div class="card" data-id="{{id}}"
+        style="display: flex;width: fit-content;max-width: 100%;margin-bottom: 0.75rem;{{#if esAdmin}}align-self: flex-end{{else}}align-self: flex-start;{{/if}}">
+        <div class="card-body" style="padding: 0.5rem;">
+          <h6 class="card-subtitle mb-2 text-muted">De: {{emisor}} - {{datos.hora}}</h6>
+          <p class="card-text">{{datos.mensaje}}</p>
+        </div>
+      </div>
     </div>
+    {{/each}}
+  </div>
+
+  <!-- Formulario para enviar mensajes -->
+  <form id="formularioEnvio" class="d-flex mt-3" action="/mensajes/enviar" method="post">
+    <input type="hidden" id="usuario" name="usuario" value="{{usuario}}">
+    <input type="hidden" id="idUsuario" name="idUsuario" value="{{idUsuario}}">
+    <input type="text" class="form-control me-2" id="textoMensaje" name="mensaje" placeholder="Escribe un mensaje...">
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>
+<script>
+  window.onload = function() {
+    var areaDeMensajes = document.getElementById('areaDeMensajes');
+    areaDeMensajes.scrollTop = areaDeMensajes.scrollHeight;
+  };
+</script>

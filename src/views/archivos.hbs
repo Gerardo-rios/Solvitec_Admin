@@ -1,119 +1,92 @@
-<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
-<div class="p-3 mb-2 bg-warning bg-gradient">
-  <ul class="nav justify-content-center text-dark">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/archivos">Archivos</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/cita">Citas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/registro_medico">Registro Medico</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Perfil
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="/perfil">Perfil</a>
+<div id="logo-section" class="text-center mt-1 mb-4">
+    <img src="images/img1.jpg" alt="Logo" id="logo-image">
+  </div>
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/logout">Cerrar sesión</a>
-      </div>
-    </li>
-  </ul>
-</div>
+  <div id="navbar-section" class="custom-navbar">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active text-dark" aria-current="page" href="/home">
+          <i class='bx bx-home-smile'></i>
+          Inicio
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/archivos">
+          <i class='bx bx-folder-plus'></i>
+          Archivos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/cita">
+          <i class='bx bxs-calendar-plus'></i>
+          Citas
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class='bx bx-user'></i>
+          Perfil
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/perfil">Perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-<div class="container-fluid">
+
+<div id="search-section" class="container-fluid">
   <div class="row justify-content-center">
     <div class=" col-md-6 mt-4 mb-4">
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
   </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formularioContactoModal" style="margin: 20px;">
-  Añadir Nuevo Contacto
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="formularioContactoModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Nuevo Contacto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="nuevoContactoForm" action="/archivos/nuevo" method="post" enctype="multipart/form-data">
-          <div class="mb-3"> 
-            <label for="cedulaModal" class="form-label">Cédula</label>
-            <input type="text" class="form-control" id="cedulaModal" name="cedula" />
-          </div>
-          <div class="mb-3">
-            <label for="correoModal" class="form-label">Correo</label>
-            <input type="email" class="form-control" id="correoModal" name="correo" />
-          </div>
-          <div class="mb-3">
-            <label for="direccionModal" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="direccionModal" name="direccion" />
-          </div>
-          <div class="mb-3">
-            <label for="nombreModal" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombreModal" name="nombre" />
-          </div>
-          <div class="mb-3">
-            <label for="photoModal" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="photoModal" name="photo" />
-          </div>
-          <div class="mb-3">
-            <label for="telefonoModal" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefonoModal" name="telefono" />
-          </div>
-          <!-- Botón mover dentro del form -->
-          <input type="submit" value="Guardar Contacto" class="btn btn-success" />
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <!-- Botón de guardar contacto movido dentro del form -->
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="user mx-4">
   <div class="row">
     {{#each contactos}}
     <div class="col-md-3 mb-4">
-      <div class="card" data-nombre="{{this.nombre}}">
-        <div class="card-body">
+      <div class="card mb-3" data-nombre="{{this.nombre}}" style="display: flex; flex-direction: column; align-items: center; padding: 10px; background-image: url('images/back.jpg'); background-size: cover; background-position: center;">
+        <div style="margin-bottom: 10px;">
+          {{#if this.photo}}
+          <img src="{{this.photo}}" class="card-img-top rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="Foto de {{this.nombre}}">
+          {{else}}
+          <img src="images/user.avif" class="card-img-top rounded-circle mx-auto" style="width: 100px; height: 100px;" alt="Foto predeterminada">
+          {{/if}}
+        </div>
+        <div class="card-body text-center">
           <!-- Mostrar el nombre del contacto -->
           <h5 class="card-title">{{this.nombre}}</h5>
           <!-- Agregar otros detalles del contacto -->
-          <h6 class="card-subtitle mb-2 text-muted">Teléfono:
-            {{this.telefono}}</h6>
-          <p class="card-text">Correo: {{this.correo}}</p>
-          <!-- Agregar enlace para borrar el contacto -->
-          <a href="/borrar/{{this.id}}" class="card-link">Borrar</a>
-          <a href="/presentar_mascota?id={{this.id}}" class="card-link">Ver
-            detalles</a>
-          <a href="/mensajes/{{this.id}}" class="card-link">Mensajes</a>
+          <p class="card-text"><strong>Teléfono:</strong> {{this.telefono}}</p>
+          <p class="card-text"><strong>Correo:</strong> {{this.correo}}</p>
+        </div>
+        <!-- Agregar botones para borrar, ver detalles y mensajes -->
+        <div class="card-footer" style="margin-top: auto;">
+          <a href="/borrar/{{this.id}}" class="btn btn-danger btn-block">Borrar</a>
+          <a href="/presentar_mascota?id={{this.id}}" class="btn btn-primary btn-block">Ver detalles</a>
+          <a href="/mensajes/{{this.id}}" class="btn btn-success btn-block">Mensajes</a>
         </div>
       </div>
     </div>
     {{/each}}
   </div>
 </div>
+
+
+
+<footer class="d-flex justify-content-center align-items-center py-3 my-4 border-top bg-gradient text-dark fixed-bottom">
+  <div class="col-md-4 text-center">
+    <span class="mb-3 mb-md-0">© 2024 CLINICA SOLVITEC</span>
+  </div>
+</footer>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const searchBar = document.querySelector('input[type="search"]'); // Asegúrate de que este selector coincida con tu barra de búsqueda

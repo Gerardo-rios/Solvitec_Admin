@@ -1,11 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Mostrar formulario de atencion
-  // document.querySelectorAll(".atenderCitaBtn").forEach((button) => {
-  //   button.addEventListener("click", function () {
-  //     var cardBody = this.closest(".card-body");
-  //     cardBody.querySelector(".formularioAtencion").style.display = "block"; // Mostrar el formulario
-  //   });
-  // });
+
 
   document.querySelectorAll(".noPresenteBtn").forEach((button) => {
     button.addEventListener("click", function () {
@@ -35,18 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Ocultar formulario de atencion
-  // document.querySelectorAll(".cancelarAtencionBtn").forEach((button) => {
-  //   button.addEventListener("click", function () {
-  //     var cardBody = this.closest(".card-body");
-  //     cardBody.querySelector(".formularioAtencion").style.display = "none"; // Ocultar el formulario
-  //   });
-  // });
-
-  // const fechaHoy = new Date().toISOString().slice(0, 10); // Obtener la fecha actual en formato yyyy-mm-dd
-  // document.querySelectorAll('[id^="fechaAtencion-"]').forEach((input) => {
-  //   input.value = fechaHoy;
-  // });
+ 
 });
 
 document.querySelectorAll(".formularioAtencion form").forEach((form) => {
@@ -63,31 +46,7 @@ document.querySelectorAll(".formularioAtencion form").forEach((form) => {
       sobre: this.querySelector('[name="sobre"]').value,
     };
 
-    // fetch("/cita/atender", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     id: citaId.replace("cita-", ""),
-    //     datos: datos,
-    //   }),
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error("Error al atender cita");
-    //     }
-    //     return response.text();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     alert("Cita atendida exitosamente");
-    //     document.querySelector(".formularioAtencion").style.display = "none"; // Ocultar el formulario
-    //     window.location.reload(); // Recargar la página después de atender la cita
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+   
   });
 
 });

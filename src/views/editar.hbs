@@ -1,50 +1,81 @@
-<h1 class="text-center mt-4 mb-4 text-primary">Solvitec</h1>
 
-<div class="p-3 mb-2 bg-info text-dark"><ul class="nav justify-content-center">
+<div id="logo-section" class="text-center mt-1 mb-4">
+  <img src="images/img1.jpg" alt="Logo" id="logo-image">
+</div>
+
+<div id="navbar-section" class="custom-navbar mb-4">
+  <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+      <a class="nav-link active text-dark" aria-current="page" href="/home">
+        <i class='bx bx-home-smile'></i>
+        Inicio
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/archivos">Archivos</a>
+      <a class="nav-link text-dark" href="/archivos">
+        <i class='bx bx-folder-plus'></i>
+        Archivos
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/cita">Citas</a>
+      <a class="nav-link text-dark" href="/cita">
+        <i class='bx bxs-calendar-plus'></i>
+        Citas
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/registro_medico">Registro Medico</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class='bx bx-user'></i>
+        Perfil
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/perfil">Perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+      </div>
     </li>
   </ul>
 </div>
 
-
-<div class="text-center">
-    <div class="formularioAtencion" style="width: 60%; margin: auto;">
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="formularioAtencion">
         <form action="/cita/atender" method="POST">
           <div class="form-group">
             <label for="fechaAtencion">Fecha de Atención</label>
             <input type="date" class="form-control" id="fechaAtencion" name="fechaAtencion" />
           </div>
           <div class="form-group">
-            <label for="proximaFechaRevision">Próxima Fecha de Revisión</label>
-            <input type="date" class="form-control" id="proximaFechaRevision" name="proximaFechaRevision" />
-          </div>
-          <div class="form-group">
             <label for="motivo">Motivo</label>
             <input type="text" class="form-control" id="motivo" name="motivo" />
+          </div>
+          <div class="form-group">
+            <label for="proximaFechaRevision">Próxima Fecha de Revisión</label>
+            <input type="date" class="form-control" id="proximaFechaRevision" name="proximaFechaRevision" />
           </div>
           <div class="form-group">
             <label for="sobre">Sobre</label>
             <textarea class="form-control" id="sobre" name="sobre"></textarea>
           </div>
-            <input type="hidden" name="citaId" value="{{id_cita}}" />
-            <input type="hidden" name="mascotaId" value="{{id_mascota}}">
-            <input type="hidden" name="contactoId" value="{{id_persona}}">
+          <input type="hidden" name="citaId" value="{{id_cita}}" />
+          <input type="hidden" name="mascotaId" value="{{id_mascota}}">
+          <input type="hidden" name="contactoId" value="{{id_persona}}">
           <br>
-          <button type="submit" class="btn btn-success">Guardar</button>
-          <button type="button" class="btn btn-warning cancelarAtencionBtn" onclick="window.history.back();">Cancelar</button>
+          <button type="submit" class="btn btn-success btn-block">Guardar</button>
+          <button type="button" class="btn btn-warning btn-block cancelarAtencionBtn" onclick="window.history.back();">Cancelar</button>
         </form>
+      </div>
     </div>
+  </div>
 </div>
+
+
+<footer class="d-flex justify-content-center align-items-center py-3 my-4 border-top bg-gradient text-dark fixed-bottom">
+  <div class="col-md-4 text-center">
+    <span class="mb-3 mb-md-0">© 2024 CLINICA SOLVITEC</span>
+  </div>
+</footer>
 <script>
     document.addEventListener("DOMContentLoaded", function () {    
         const fechaHoy = new Date().toISOString().slice(0, 10); // Obtener la fecha actual en formato yyyy-mm-dd

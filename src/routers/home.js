@@ -49,7 +49,8 @@ route.post("/home/aceptar-cita", auth, async (req, res) => {
 route.post("/home/rechazar-cita", auth, async (req, res) => {
   try {
     const { id } = req.body;
-    await escribirEnFirestore("Citas", { status: "rechazada" }, id);
+    await escribirEnFirestore("Citas", { status: "rechazada" , razon: "Por el momento no te podemos atender, para mas informacion comunicate a nuetros numero telefonico 0999433025" }, id);
+    // await escribirEnFirestore("Citas",)
     res.send("Cita rechazada exitosamente");
   } catch (error) {
     console.error("Error al rechazar cita:", error);

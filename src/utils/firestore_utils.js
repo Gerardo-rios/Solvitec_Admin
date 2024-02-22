@@ -40,6 +40,8 @@ async function escribirEnFirestore(coleccion, datos, docId = null) {
   }
 }
 
+
+
 async function leerConFiltroFirestore(coleccion, filtro = null) {
   try {
     let consulta = collection(db, coleccion);
@@ -55,9 +57,10 @@ async function leerConFiltroFirestore(coleccion, filtro = null) {
     // Si necesitas manipular los datos (por ejemplo, fechas), puedes hacerlo aquí
     documentos.forEach((doc) => {
       if (doc.datos.fecha) {
-        doc.datos.fecha = new Date(doc.datos.fecha).toLocaleDateString("es-ES");
+        doc.datos.fecha = new Date(doc.datos.fecha).toLocaleString("es-ES");
       }
     });
+    
 
     return documentos;
   } catch (error) {

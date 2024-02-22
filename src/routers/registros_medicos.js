@@ -21,7 +21,6 @@ route.get("/registro_medico", auth, async (req, res) => {
     });
   }
 });
-
 async function obtenerTodosLosRegistrosMedicos() {
   const todosLosRegistros = await leerDeFirestore("registro_medico");
   for (let registro of todosLosRegistros) {
@@ -31,7 +30,6 @@ async function obtenerTodosLosRegistrosMedicos() {
   }
   return todosLosRegistros;
 }
-
 async function obtenerCitaPorId(citaId) {
   const cita = await leerDeFirestore("Citas", citaId);
   if (cita.length) {
@@ -40,7 +38,6 @@ async function obtenerCitaPorId(citaId) {
   cita.fecha = new Date(cita.fecha).toLocaleDateString("es-ES");
   return cita;
 }
-
 async function obtenerMascotaPorId(mascotaId) {
   const mascota = await leerDeFirestore("Mascotas", mascotaId);
   if (mascota.length) {

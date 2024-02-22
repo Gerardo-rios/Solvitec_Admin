@@ -16,13 +16,11 @@ router.post("/iniciar_sesion", isLogged, async (req, res) => {
       return res.status(400).end();
     }
     const user = await signInWithEmailAndPassword(auth, email, password);
-
     res.cookie("user", user.user, {
       maxAge: 3600 * 1000,
       httpOnly: true,
       secure: false,
     });
-
     res.redirect("home");
   } catch (error) {
     console.error("Error al iniciar sesión:", error);

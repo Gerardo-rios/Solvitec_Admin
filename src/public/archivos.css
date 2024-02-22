@@ -1,0 +1,39 @@
+#logo-section {
+  text-align: center;
+  margin-top: 20px; /* Espacio en la parte superior */
+}
+
+#logo-image {
+  width: 300px; /* Ancho de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+}
+#navbar-section .nav-item i {
+  font-size: 50px !important; /* Tamaño de los iconos de navegación */
+}
+
+#navbar-section .nav-item .nav-link {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el texto con el icono */
+  justify-content: center; /* Centra el texto horizontalmente */
+  flex-direction: column; /* Alinea el icono encima del texto */
+  font-size: 14px; /* Tamaño del texto */
+  margin-right: 10px; /* Espacio a la derecha de cada elemento */
+}
+
+.custom-navbar .nav-item {
+  margin-right: 30px; /* Agrega espacio entre los elementos de navegación */
+}
+
+.custom-navbar .nav-item:last-child {
+  margin-right: 0; /* Elimina el margen derecho del último elemento */
+}
+
+#navbar-section {
+  background-color: #90e4f4; /* Color de fondo celeste */
+}
+
+.custom-navbar .nav-item:hover .nav-link {
+  background-color: #ffffff; /* Cambia el color de fondo al pasar el mouse */
+  color: white; /* Cambia el color del texto al pasar el mouse */
+  border-radius: 10px;
+}

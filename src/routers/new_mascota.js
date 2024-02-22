@@ -16,16 +16,19 @@ router.post("/new-mascota", auth, upload.single("foto"), async (req, res) => {
     const { nombre, raza, edad, dueno, categoria, peso, altura, sexo } =
       req.body;
 
-    const tipoMime = req.file.mimetype;
-    const archivo = req.file;
+      let photo = null; // Inicializamos photo como null
 
-    const nombreArchivo = `${Date.now()}-${archivo.originalname}`;
-    const photo = await subirFotoAFirebaseStorage(
-      archivo.buffer,
-      nombreArchivo,
-      "pets",
-      tipoMime
-    );
+      if (req.file) {
+        const tipoMime = req.file.mimetype;
+        const archivo = req.file;
+        const nombreArchivo = `${Date.now()}-${archivo.originalname}`;
+        photo = await subirFotoAFirebaseStorage(
+          archivo.buffer,
+          nombreArchivo,
+          "pets",
+          tipoMime
+        );
+      }
 
     await escribirEnFirestore("Mascotas", {
       nombre,
@@ -39,7 +42,7 @@ router.post("/new-mascota", auth, upload.single("foto"), async (req, res) => {
       photo,
     });
 
-    res.redirect(`/presentar_mascota/${userId}`);
+    res.redirect(`/presentar_mascota?id=${userId}`);
   } catch (error) {
     console.error("Error al guardar mascota:", error);
     res.status(500).send("Error al guardar mascota");
